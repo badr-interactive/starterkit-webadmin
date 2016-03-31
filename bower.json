@@ -1,0 +1,25 @@
+{
+  "name": "fruitabout-web",
+  "description": "Fruit-about app web admin",
+  "main": "index.php",
+  "authors": [
+    "Salman El Farisi <dev.salman.farisi@gmail.com>"
+  ],
+  "license": "Comercial",
+  "keywords": [
+    "fruit-about"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "admin-lte": "^2.3.2"
+  }
+}
