@@ -52,6 +52,7 @@ class UserController extends Controller
         $user->email = $request->get('email');
         $user->name = $request->get('name');
         $user->role_id = $request->get('role_id');
+        $user->activation_token = bin2hex(random_bytes(8));
         $user->save();
 
         $image = $this->identicon->getImageData($request->name);
