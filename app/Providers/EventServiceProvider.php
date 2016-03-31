@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\WriteLoginLog',
             'App\Listeners\UpdateUserLastLogin'
         ],
+        'App\Events\UserHasRegistered' => [
+            'App\Listeners\EmailConfirmation'
+        ]
     ];
 
     /**

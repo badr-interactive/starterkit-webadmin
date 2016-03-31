@@ -7,13 +7,14 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Traits\WithDatatables;
+use App\Events\UserHasRegistered;
 use App\User;
 use App\SystemLog;
 use Uuid\Uuid;
 use Identicon\Identicon;
 use Storage;
-use Mail;
 use Auth;
+use Event;
 
 class UserController extends Controller
 {
@@ -56,10 +57,6 @@ class UserController extends Controller
         $image = $this->identicon->getImageData($request->name);
         Storage::put('avatars/' . $request->get('uuid') . '.png', $image);
 
-        Mail::send('emails.registration', ['user' => $user], function ($message) use ($user) {
-            $message->to($user->email, $user->name)->subject('Account Activation');
-        });
-
         if (empty($uuid)) {
             $request->session()->flash('alert-success', 'User was successfully saved! '
                 . 'Please inform the user to check their email for account activation');
@@ -67,6 +64,7 @@ class UserController extends Controller
             $request->session()->flash('alert-success', 'User account was successfully updated!');
         }
 
+        Event::fire(new UserHasRegistered($user));
         return redirect()->back();
     }
 
