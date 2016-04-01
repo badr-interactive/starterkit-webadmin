@@ -49,18 +49,23 @@ class UserController extends Controller
         $email = $request->get('email');
 
         $user = $this->user->firstOrNew(['uuid' => $uuid, 'email' => $email]);
-        $user->uuid = empty($uuid) ? \Uuid::generate(4) : $uuid;
         $user->email = $request->get('email');
         $user->name = $request->get('name');
+        $user->phone = $request->get('phone');
         $user->role_id = $request->get('role_id');
-        $user->activation_token = bin2hex(random_bytes(8));
 
-        $generatedPassword = bin2hex(random_bytes(8));
-        $user->password = bcrypt($generatedPassword);
+        if ($this->isNewUserRequest($request)) {
+            $generatedPassword = bin2hex(random_bytes(8));
+            $user->password = bcrypt($generatedPassword);
+            $user->activation_token = bin2hex(random_bytes(8));
+            $user->uuid = \Uuid::generate(4);
+
+            $image = $this->identicon->getImageData($request->name);
+            Storage::put('avatars/' . $user->uuid . '.png', $image);
+            Event::fire(new UserHasRegistered($user, $generatedPassword));
+        }
+
         $user->save();
-
-        $image = $this->identicon->getImageData($request->name);
-        Storage::put('avatars/' . $request->get('uuid') . '.png', $image);
 
         if (empty($uuid)) {
             $request->session()->flash('alert-success', 'User was successfully saved! '
@@ -69,7 +74,6 @@ class UserController extends Controller
             $request->session()->flash('alert-success', 'User account was successfully updated!');
         }
 
-        Event::fire(new UserHasRegistered($user, $generatedPassword));
         return redirect()->back();
     }
 
@@ -115,5 +119,10 @@ class UserController extends Controller
         }
 
         abort(404);
+    }
+
+    private function isNewUserRequest(Request $request)
+    {
+        return empty($request->uuid);
     }
 }
