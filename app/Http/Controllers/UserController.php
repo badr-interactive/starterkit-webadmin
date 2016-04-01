@@ -47,12 +47,16 @@ class UserController extends Controller
     {
         $uuid = $request->get('uuid');
         $email = $request->get('email');
+
         $user = $this->user->firstOrNew(['uuid' => $uuid, 'email' => $email]);
         $user->uuid = empty($uuid) ? \Uuid::generate(4) : $uuid;
         $user->email = $request->get('email');
         $user->name = $request->get('name');
         $user->role_id = $request->get('role_id');
         $user->activation_token = bin2hex(random_bytes(8));
+
+        $generatedPassword = bin2hex(random_bytes(8));
+        $user->password = bcrypt($generatedPassword);
         $user->save();
 
         $image = $this->identicon->getImageData($request->name);
@@ -65,7 +69,7 @@ class UserController extends Controller
             $request->session()->flash('alert-success', 'User account was successfully updated!');
         }
 
-        Event::fire(new UserHasRegistered($user));
+        Event::fire(new UserHasRegistered($user, $generatedPassword));
         return redirect()->back();
     }
 

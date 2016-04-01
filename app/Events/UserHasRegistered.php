@@ -16,9 +16,10 @@ class UserHasRegistered extends Event
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $password)
     {
         $this->user = $user;
+        $this->password = $password;
     }
 
     /**
