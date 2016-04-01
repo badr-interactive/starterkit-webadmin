@@ -91,4 +91,25 @@ class UserController extends Controller
 
         return response()->view('user.profile', compact('user', 'logs'));
     }
+
+    public function activation(Request $request)
+    {
+        $email = $request->get('email');
+        $token = $request->get('token');
+
+        $user = $this->user->where([
+            'email' => $email,
+            'activation_token' => $token,
+            'is_active' => false
+        ])->first();
+
+        if (!is_null($user)) {
+            $user->is_active = true;
+            $user->save();
+
+            return redirect()->to('/');
+        }
+
+        abort(404);
+    }
 }

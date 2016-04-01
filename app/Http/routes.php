@@ -36,6 +36,8 @@ Route::get('avatar/{uuid}', ['as' => 'avatar.url', function($uuid) {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::get('/activate', ['as' => 'activation', 'uses' => 'UserController@activation']);
+
     Route::group(['middleware' => 'auth'], function() {
         Route::get('/', function () {
             return view('welcome');
