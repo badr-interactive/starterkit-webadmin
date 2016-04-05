@@ -34,6 +34,12 @@
                               @endif
                           </div>
                         </div>
+                        <div class="form-group">
+                          <label for="isAdmin" class="control-label col-sm-2">Is Admin</label>
+                          <div class="col-sm-10">
+                              <input type="checkbox" id="isAdmin" name="is_admin" value="true" {{$userRole->is_admin ? "checked" : ""}} />
+                          </div>
+                        </div>
                         <div>
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-primary" name="submit">Save</button>
