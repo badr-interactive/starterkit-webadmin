@@ -43,7 +43,7 @@ Route::group(['middleware' => 'web'], function () {
             return view('welcome');
         });
 
-        Route::group(['prefix' => 'manages'], function () {
+        Route::group(['prefix' => 'manages', 'middleware' => 'superuser'], function () {
             Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
                 Route::get('form/{uuid?}', ['as' => 'form', 'uses' => 'UserController@form']);

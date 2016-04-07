@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class VerifyIsSuperUser
 {
@@ -15,7 +16,7 @@ class VerifyIsSuperUser
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->is_superuser) {
+        if (Auth::user()->role->is_admin) {
             return $next($request);
         }
 
