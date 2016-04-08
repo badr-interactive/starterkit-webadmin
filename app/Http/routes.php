@@ -60,6 +60,10 @@ Route::group(['middleware' => 'web'], function () {
                 Route::post('save', ['as' => 'save', 'uses' => 'UserRoleController@save']);
                 Route::post('delete', ['as' => 'delete', 'uses' => 'UserRoleController@delete']);
             });
+
+            Route::group(['prefix' => 'controls', 'as' => 'control.'], function () {
+                Route::get('/', ['as' => 'index', 'uses' => 'AccessController@index']);
+            });
         });
     });
 });
