@@ -18,7 +18,6 @@ class UserTableSeeder extends Seeder
             'name' => 'Administrator',
             'phone' => '0123-4567xxx',
             'password' => bcrypt('password123'),
-            'role_id' => 1,
             'last_login' => '2016-02-01 10:00:00',
             'created_at' => '2016-02-01 10:00:00',
             'updated_at' => '2016-02-01 10:00:00'

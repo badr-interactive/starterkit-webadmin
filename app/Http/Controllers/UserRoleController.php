@@ -9,14 +9,14 @@ use App\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRoleRequest;
 use App\Traits\WithDatatables;
-use App\UserRole;
+use App\Role;
 use Uuid\Uuid;
 
 class UserRoleController extends Controller
 {
     use WithDatatables;
 
-    function __construct(UserRole $userRole)
+    function __construct(Role $userRole)
     {
         $this->tableModel = $userRole;
         $this->userRole = $userRole;
