@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Carbon\Carbon;
 
 class User extends Authenticatable
 {
     use CanResetPassword;
+    use EntrustUserTrait;
 
     protected $table = 'users';
     protected $fillable = ['uuid', 'name', 'email', 'password', 'phone', 'role_id', 'created_at', 'updated_at'];
