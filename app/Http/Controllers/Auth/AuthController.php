@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Cache;
 use Event;
 use App\User;
 use App\Events\UserHasLoggedIn;

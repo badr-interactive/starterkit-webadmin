@@ -19,7 +19,7 @@ use Event;
 class UserController extends Controller
 {
     use WithDatatables;
-    protected $relation = 'role';
+    protected $relation = 'roles';
 
     function __construct(
         User $user,

@@ -22,7 +22,7 @@
             <img src="{{route('avatar.url', [Auth::user()->uuid])}}" class="img-circle" alt="User Image">
 
             <p>
-              {{Auth::user()->name}} - {{Auth::user()->role->name}}
+              {{Auth::user()->name}} - {{Auth::user()->roles->last()->display_name}}
               <small>Member since {{Auth::user()->created_at}}</small>
             </p>
           </li>

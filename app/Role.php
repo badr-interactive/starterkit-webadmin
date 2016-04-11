@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Zizaco\Entrust\EntrustPermission;
+use Zizaco\Entrust\EntrustRole;
 
-class Role extends EntrustPermission
+class Role extends EntrustRole
 {
     protected $table = 'roles';
     protected $fillable = ['uuid', 'name', 'display_name', 'description', 'created_at', 'updated_at'];

@@ -17,7 +17,6 @@
                     <table id="userTable" class="table table-stripped table-bordered table-hover dataTable">
                         <thead>
                             <tr>
-                                <th width="10%">ID.</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -44,10 +43,9 @@ $('#userTable').DataTable({
     serverSide: true,
     ajax: '{{route('user.data')}}',
     columns: [
-        {data: 'rownum', name: 'rownum'},
         {data: 'name', name: 'name'},
         {data: 'email', name: 'email'},
-        {data: 'role.name', name: 'role'},
+        {data: 'roles.0.display_name', name: 'role'},
         {data: 'created_at', name: 'created_at'},
         {data: 'updated_at', name: 'updated_at'},
         {data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-right'}

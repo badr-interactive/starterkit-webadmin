@@ -17,9 +17,8 @@
                     <table id="userRoleTable" class="table table-stripped table-bordered table-hover dataTable">
                         <thead>
                             <tr>
-                                <th width="10%">ID.</th>
                                 <th>Name</th>
-                                <th>Description</th>
+                                <th>Display Name</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th>Action</th>
@@ -43,9 +42,8 @@ $('#userRoleTable').DataTable({
     serverSide: true,
     ajax: "{{route('user_role.data')}}",
     columns: [
-        {data: 'rownum', name: 'rownum'},
         {data: 'name', name: 'name'},
-        {data: 'description', name: 'description'},
+        {data: 'display_name', name: 'display_name'},
         {data: 'created_at', name: 'created_at'},
         {data: 'updated_at', name: 'updated_at'},
         {data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-right'}

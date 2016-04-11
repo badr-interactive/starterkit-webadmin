@@ -67,22 +67,3 @@
     </div>
 </div>
 @endsection
-
-@section('script')
-<script type="text/javascript">
-$('#userTable').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: '{{route('user.data')}}',
-    columns: [
-        {data: 'id', name: 'id'},
-        {data: 'picture', name: 'picture'},
-        {data: 'name', name: 'name'},
-        {data: 'email', name: 'email'},
-        {data: 'created_at', name: 'created_at'},
-        {data: 'updated_at', name: 'updated_at'},
-        {data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-right'}
-    ]
-});
-</script>
-@endsection

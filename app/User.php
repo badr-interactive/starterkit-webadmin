@@ -13,7 +13,7 @@ class User extends Authenticatable
     use EntrustUserTrait;
 
     protected $table = 'users';
-    protected $fillable = ['uuid', 'name', 'email', 'password', 'phone', 'role_id', 'created_at', 'updated_at'];
+    protected $fillable = ['uuid', 'name', 'email', 'password', 'phone', 'created_at', 'updated_at'];
     protected $hidden = ['password', 'remember_token'];
     protected $casts = ['role_id' => 'integer'];
 
@@ -25,10 +25,5 @@ class User extends Authenticatable
     public function getUpdatedAtAttribute($value)
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $value)->diffForHumans();
-    }
-
-    public function role()
-    {
-        return $this->hasOne('App\UserRole', 'id', 'role_id');
     }
 }
