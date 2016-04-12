@@ -25,19 +25,22 @@
                               @endif
                           </div>
                         </div>
+                        <div class="form-group {{ $errors->has('display_name') ? 'has-error' : ''}}">
+                          <label for="displayName" class="control-label col-sm-2">Display Name</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" id="displayName" placeholder="Display Name" name="display_name" value="{{$userRole->display_name}}" />
+                              @if($errors->has('display_name'))
+                                <span class="help-block">{{$errors->first('display_name')}}</span>
+                              @endif
+                          </div>
+                        </div>
                         <div class="form-group {{$errors->has('description') ? 'has-error' : ''}}">
-                          <label for="fullname" class="control-label col-sm-2">Description</label>
+                          <label for="description" class="control-label col-sm-2">Description</label>
                           <div class="col-sm-10">
                               <input type="text" class="form-control" id="description" placeholder="Role Description" name="description" value="{{$userRole->description}}"/>
                               @if($errors->has('description'))
                                 <span class="help-block">{{$errors->first('description')}}</span>
                               @endif
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="isAdmin" class="control-label col-sm-2">Is Admin</label>
-                          <div class="col-sm-10">
-                              <input type="checkbox" id="isAdmin" name="is_admin" value="true" {{$userRole->is_admin ? "checked" : ""}} />
                           </div>
                         </div>
                         <div>

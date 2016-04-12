@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\UserRole;
+use App\Role;
 
 class StoreUserRoleRequest extends Request
 {
@@ -24,11 +24,12 @@ class StoreUserRoleRequest extends Request
      */
     public function rules()
     {
-        $userRole = UserRole::where(['uuid' => $this->uuid])->first();
+        $userRole = Role::where(['uuid' => $this->uuid])->first();
         $userRoleId = is_null($userRole) ? 0 : $userRole->id;
 
         return [
-            'name' => 'required|unique:user_roles,name,' . $userRoleId,
+            'name' => 'required|unique:roles,name,' . $userRoleId,
+            'display_name' => 'required|unique:roles,display_name,' . $userRoleId,
             'description' => 'required'
         ];
     }

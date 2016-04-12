@@ -39,8 +39,8 @@ class UserRoleController extends Controller
         $userRole = $this->userRole->firstOrNew(['uuid' => $uuid]);
         $userRole->uuid = empty($uuid) ? \Uuid::generate(4) : $uuid;
         $userRole->name = $request->name;
+        $userRole->display_name = $request->display_name;
         $userRole->description = $request->description;
-        $userRole->is_admin = $request->is_admin ? 1 : 0;
         $userRole->save();
 
         if (empty($uuid)) {
