@@ -6,20 +6,23 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Route;
+use App\Traits\WithDatatables;
+use App\Permission;
 
 class AccessController extends Controller
 {
+    use WithDatatables;
+    protected $dtMode = ['checkbox'];
+
+    function __construct(Permission $permission)
+    {
+        $this->tableModel = $permission;
+        $this->permission = $permission;
+    }
+
     public function index(Request $request)
     {
-        $routes = Route::getRoutes();
-        $namedRoutes = [];
-        foreach ($routes as $route) {
-            if ($route->getName()) {
-                array_push($namedRoutes, $route);
-            }
-        }
-
-        return response()->view('control.index', ['routes' => $namedRoutes]);
+        $permissions = $this->permission->all();
+        return response()->view('control.index', ['permissions' => $permissions]);
     }
 }

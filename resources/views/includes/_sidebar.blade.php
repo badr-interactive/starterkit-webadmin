@@ -6,6 +6,7 @@
         <ul class="sidebar-menu">
             <li><a href="{{route('user.index')}}"><i class="ion ion-person"></i> Users</a></li>
             <li><a href="{{route('user_role.index')}}"><i class="ion ion-locked"></i> User Roles</a></li>
+            <li><a href="{{route('control.index')}}"><i class="ion ion-locked"></i> Permissions</a></li>
         </ul>
     </section>
   <!-- /.sidebar -->

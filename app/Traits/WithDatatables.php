@@ -22,9 +22,21 @@ trait WithDatatables
             }
 
             $dataTables = Datatables::of($models->get());
-            $dataTables->addColumn('action', function($model) {
-                return $this->getActionButton($model);
-            });
+            foreach ($this->dtMode as $mode) {
+                switch ($mode) {
+                    case 'action':
+                        $dataTables->addColumn('action', function($model) {
+                            return $this->getActionButton($model);
+                        });
+                        break;
+
+                    case 'checkbox':
+                        $dataTables->addColumn('checkbox', function($model) {
+                            return $this->getCheckBox($model);
+                        });
+                        break;
+                }
+            }
 
             return $dataTables->make(true);
         } else {
@@ -41,5 +53,10 @@ trait WithDatatables
     {
         return '<a class="btn btn-xs btn-primary btn-edit" data-value="'.$model->uuid.'"><i class="glyphicon glyphicon-edit"></i> Edit</a> &nbsp;' .
         '<a class="btn btn-xs btn-danger btn-delete" data-value="'.$model->uuid.'" data-info="'.$this->getDataName($model).'"><i class="glyphicon glyphicon-remove"></i> Delete</a> &nbsp;';
+    }
+
+    private function getCheckbox($model)
+    {
+        return '<input type="checkbox" name="checkbox" value="'.$model->uuid.'" />';
     }
 }

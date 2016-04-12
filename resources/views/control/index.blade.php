@@ -8,30 +8,20 @@
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title"><i class="ion ion-locked"></i> Access Control</h3>
-                <a href="{{route('user_role.form')}}">
-                    <button id="btnAdd" class="btn btn-primary pull-right btn-xs"><i class="ion ion-plus"></i> Add</button>
-                </a>
             </div>
             <div class="box-body">
                 <div class="dataTable_wrapper">
-                    <table id="controlTable" class="table table-stripped table-bordered table-hover dataTable">
+                    <table id="permissionTable" class="table table-stripped table-bordered table-hover dataTable">
                         <thead>
                             <tr>
-                                <th width="10%">ID.</th>
                                 <th>Name</th>
-                                <th>Path</th>
+                                <th>Display Name</th>
+                                <th>Description</th>
                                 <th>Allow</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($routes as $index => $route)
-                                <tr>
-                                    <td>{{$index + 1}}</td>
-                                    <td>{{$route->getName()}}</td>
-                                    <td>{{$route->getPath()}}</td>
-                                    <td><input type="checkbox" name="routes[]" value="{{$route->getName()}}" /></td>
-                                </tr>
-                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -43,7 +33,16 @@
 
 @section('scripts')
 <script type="text/javascript">
-var table = $('#controlTable').DataTable({
+$('#permissionTable').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: "{{route('control.data')}}",
+    columns: [
+        {data: 'name', name: 'name'},
+        {data: 'display_name', name: 'display_name'},
+        {data: 'description', name: 'description'},
+        {data: 'checkbox', name: 'checkbox'}
+    ],
     drawCallback: function () {
         $('input').iCheck({
           checkboxClass: 'icheckbox_square-blue',
