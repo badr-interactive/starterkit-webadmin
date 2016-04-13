@@ -15,7 +15,7 @@ use Uuid\Uuid;
 class UserRoleController extends Controller
 {
     use WithDatatables;
-    protected $dtMode = ['action'];
+    protected $dtMode = ['action:uuid'];
 
     function __construct(Role $userRole)
     {

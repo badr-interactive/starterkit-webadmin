@@ -20,7 +20,7 @@ class UserController extends Controller
 {
     use WithDatatables;
     protected $relation = 'roles';
-    protected $dtMode = ['action'];
+    protected $dtMode = ['action:uuid'];
 
     function __construct(
         User $user,
