@@ -13,7 +13,7 @@ use App\Role;
 class AccessController extends Controller
 {
     use WithDatatables;
-    protected $dtMode = ['checkbox'];
+    protected $dtMode = ['checkbox:name'];
 
     function __construct(Permission $permission, Role $role)
     {

@@ -12,6 +12,7 @@ use Auth;
 trait WithDatatables
 {
     protected $tableModel = null;
+    private $columnConfigs = [];
 
     public function ajaxData(Request $request)
     {
@@ -22,17 +23,18 @@ trait WithDatatables
             }
 
             $dataTables = Datatables::of($models->get());
-            foreach ($this->dtMode as $mode) {
+            $this->columnConfigs = $this->getColumnConfigs($this->dtMode);
+            foreach ($this->columnConfigs as $mode => $idColumn) {
                 switch ($mode) {
                     case 'action':
-                        $dataTables->addColumn('action', function($model) {
-                            return $this->getActionButton($model);
+                        $dataTables->addColumn('action', function($model) use ($idColumn) {
+                            return $this->getActionButton($model, $idColumn);
                         });
                         break;
 
                     case 'checkbox':
-                        $dataTables->addColumn('checkbox', function($model) {
-                            return $this->getCheckBox($model);
+                        $dataTables->addColumn('checkbox', function($model) use ($idColumn) {
+                            return $this->getCheckBox($model, $idColumn);
                         });
                         break;
                 }
@@ -49,14 +51,25 @@ trait WithDatatables
         return $model->name;
     }
 
-    private function getActionButton($model)
+    private function getActionButton($model, $idColumn)
     {
-        return '<a class="btn btn-xs btn-primary btn-edit" data-value="'.$model->uuid.'"><i class="glyphicon glyphicon-edit"></i> Edit</a> &nbsp;' .
-        '<a class="btn btn-xs btn-danger btn-delete" data-value="'.$model->uuid.'" data-info="'.$this->getDataName($model).'"><i class="glyphicon glyphicon-remove"></i> Delete</a> &nbsp;';
+        return '<a class="btn btn-xs btn-primary btn-edit" data-value="'.$model->getAttribute($idColumn).'"><i class="glyphicon glyphicon-edit"></i> Edit</a> &nbsp;' .
+        '<a class="btn btn-xs btn-danger btn-delete" data-value="'.$model->getAttribute($idColumn).'" data-info="'.$this->getDataName($model).'"><i class="glyphicon glyphicon-remove"></i> Delete</a> &nbsp;';
     }
 
-    private function getCheckbox($model)
+    private function getCheckbox($model, $idColumn)
     {
-        return '<input type="checkbox" name="checkbox" value="'.$model->uuid.'" />';
+        return '<input type="checkbox" name="checkbox" value="'.$model->getAttribute($idColumn).'" />';
+    }
+
+    private function getColumnConfigs()
+    {
+        $configs = [];
+        foreach ($this->dtMode as $mode) {
+            $values = explode(':', $mode);
+            $configs[$values[0]] = isset($values[1]) ? $values[1] : 'id';
+        }
+
+        return $configs;
     }
 }
