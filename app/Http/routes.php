@@ -64,6 +64,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::group(['prefix' => 'controls', 'as' => 'control.'], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'AccessController@index']);
                 Route::get('data', ['as' => 'data', 'uses' => 'AccessController@ajaxData']);
+                Route::get('permission/{id}', ['as' => 'permission', 'uses' => 'AccessController@ajaxPermissions']);
             });
         });
     });

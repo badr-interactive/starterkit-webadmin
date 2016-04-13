@@ -50,13 +50,37 @@ $('#permissionTable').DataTable({
         {data: 'description', name: 'description'},
         {data: 'checkbox', name: 'checkbox'}
     ],
+
     drawCallback: function () {
         $('input').iCheck({
           checkboxClass: 'icheckbox_square-blue',
           radioClass: 'iradio_square-blue',
           increaseArea: '20%' // optional
         });
+
+        updatePermissionChecklist();
     }
 });
+
+$('#roleQuery').change(function () {
+    updatePermissionChecklist();
+});
+
+function updatePermissionChecklist(roleId)
+{
+    var roleId = $('#roleQuery').val();
+    $.ajax({
+        url: "controls/permission/" + roleId,
+        method: "GET"
+    }).done(function (data) {
+        $('input[name="checkbox"]').each(function () {
+            if (data.indexOf($(this).val()) >= 0) {
+                $(this).iCheck('check');
+            } else {
+                $(this).iCheck('uncheck');
+            }
+        });
+    });
+}
 </script>
 @endsection

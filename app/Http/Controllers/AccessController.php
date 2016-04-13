@@ -31,4 +31,17 @@ class AccessController extends Controller
             'roles' => $roles
         ]);
     }
+
+    public function ajaxPermissions(Request $request, $uuid)
+    {
+        $role = $this->role->where(['uuid' => $uuid])->first();
+        $permissions = [];
+        if (!is_null($role)) {
+            foreach ($role->perms as $perm) {
+                array_push($permissions, $perm->name);
+            }
+        }
+
+        return response()->json($permissions);
+    }
 }
