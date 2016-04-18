@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\GrantRevokePermissionRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\WithDatatables;
 use App\Permission;
@@ -43,5 +43,23 @@ class AccessController extends Controller
         }
 
         return response()->json($permissions);
+    }
+
+    public function ajaxGrantPermission(GrantRevokePermissionRequest $request)
+    {
+        $permission = $this->permission->where(['name' => $request->permission])->first();
+        $role = $this->role->where(['uuid' => $request->role_id])->first();
+        $role->attachPermission($permission);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function ajaxRevokePermission(GrantRevokePermissionRequest $request)
+    {
+        $permission = $this->permission->where(['name' => $request->permission])->first();
+        $role = $this->role->where(['uuid' => $request->role_id])->first();
+        $role->detachPermission($permission);
+
+        return response()->json(['success' => true]);
     }
 }

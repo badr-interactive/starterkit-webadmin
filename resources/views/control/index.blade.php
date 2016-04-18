@@ -56,6 +56,23 @@ $('#permissionTable').DataTable({
           checkboxClass: 'icheckbox_square-blue',
           radioClass: 'iradio_square-blue',
           increaseArea: '20%' // optional
+        }).on('ifClicked', function (event) {
+            var isGranted = !$(this).prop('checked');
+            var permission = $(this).val();
+            var role = $('#roleQuery').val();
+            var url = 'controls/revoke/' + permission + '/' + role;
+
+            if (isGranted) {
+                url = 'controls/grant/' + permission + '/' + role;
+            }
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: {_token: "{{csrf_token()}}"}
+            }).done(function (data) {
+                console.log(data);
+            });
         });
 
         updatePermissionChecklist();

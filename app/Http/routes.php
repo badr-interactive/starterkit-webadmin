@@ -65,6 +65,8 @@ Route::group(['middleware' => 'web'], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'AccessController@index']);
                 Route::get('data', ['as' => 'data', 'uses' => 'AccessController@ajaxData']);
                 Route::get('permission/{id}', ['as' => 'permission', 'uses' => 'AccessController@ajaxPermissions']);
+                Route::post('grant/{permission}/{role_id}', ['as' => 'permission', 'uses' => 'AccessController@ajaxGrantPermission']);
+                Route::post('revoke/{permission}/{role_id}', ['as' => 'permission', 'uses' => 'AccessController@ajaxRevokePermission']);
             });
         });
     });
