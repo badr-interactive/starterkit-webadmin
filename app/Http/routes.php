@@ -44,7 +44,7 @@ Route::group(['middleware' => 'web'], function () {
         });
 
         Route::group(['prefix' => 'manages'], function () {
-            Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
+            Route::group(['prefix' => 'users', 'as' => 'user.', 'middleware' => ['permission:manage-users']], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
                 Route::get('form/{uuid?}', ['as' => 'form', 'uses' => 'UserController@form']);
                 Route::get('data', ['as' => 'data', 'uses' => 'UserController@ajaxData']);
@@ -53,7 +53,7 @@ Route::group(['middleware' => 'web'], function () {
                 Route::post('delete', ['as' => 'delete', 'uses' => 'UserController@delete']);
             });
 
-            Route::group(['prefix' => 'user_roles', 'as' => 'user_role.'], function () {
+            Route::group(['prefix' => 'user_roles', 'as' => 'user_role.', 'middleware' => ['permission:manage-roles']], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'UserRoleController@index']);
                 Route::get('form/{uuid?}', ['as' => 'form', 'uses' => 'UserRoleController@form']);
                 Route::get('data', ['as' => 'data', 'uses' => 'UserRoleController@ajaxData']);
@@ -61,7 +61,7 @@ Route::group(['middleware' => 'web'], function () {
                 Route::post('delete', ['as' => 'delete', 'uses' => 'UserRoleController@delete']);
             });
 
-            Route::group(['prefix' => 'controls', 'as' => 'control.'], function () {
+            Route::group(['prefix' => 'controls', 'as' => 'control.', 'middleware' => ['permission:manage-controls']], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'AccessController@index']);
                 Route::get('data', ['as' => 'data', 'uses' => 'AccessController@ajaxData']);
                 Route::get('permission/{id}', ['as' => 'permission', 'uses' => 'AccessController@ajaxPermissions']);
