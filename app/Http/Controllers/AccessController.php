@@ -24,7 +24,7 @@ class AccessController extends Controller
 
     public function index(Request $request)
     {
-        $roles = $this->role->all();
+        $roles = $this->role->whereNotIn('id', [1])->get();
         $permissions = $this->permission->all();
         return response()->view('control.index', [
             'permissions' => $permissions,
