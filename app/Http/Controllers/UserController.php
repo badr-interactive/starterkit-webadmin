@@ -9,6 +9,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Traits\WithDatatables;
 use App\Events\UserHasRegistered;
 use App\User;
+use App\Role;
 use App\SystemLog;
 use Uuid\Uuid;
 use Identicon\Identicon;
@@ -24,11 +25,13 @@ class UserController extends Controller
 
     function __construct(
         User $user,
+        Role $role,
         Identicon $identicon,
         SystemLog $log)
     {
         $this->tableModel = $user;
         $this->user = $user;
+        $this->role = $role;
         $this->identicon = $identicon;
         $this->log = $log;
     }
@@ -53,7 +56,6 @@ class UserController extends Controller
         $user->email = $request->get('email');
         $user->name = $request->get('name');
         $user->phone = $request->get('phone');
-        $user->role_id = $request->get('role_id');
 
         if ($this->isNewUserRequest($request)) {
             $generatedPassword = bin2hex(random_bytes(8));
@@ -67,6 +69,8 @@ class UserController extends Controller
         }
 
         $user->save();
+        $role = $this->role->where(['uuid' => $request->role_id])->first();
+        $user->attachRole($role);
 
         if (empty($uuid)) {
             $request->session()->flash('alert-success', 'User was successfully saved! '

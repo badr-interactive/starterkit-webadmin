@@ -48,7 +48,7 @@
                           <div class="col-sm-10">
                               <select name="role_id" id="roleId" class="form-control">
                                   @foreach(App\Role::all() as $role)
-                                  <option value="{{$role->id}}" {{$user->role_id === $role->id ? 'selected' : ''}}>{{$role->display_name}}</option>
+                                  <option value="{{$role->uuid}}" {{$user->role_id === $role->id ? 'selected' : ''}}>{{$role->display_name}}</option>
                                   @endforeach
                               </select>
                           </div>
