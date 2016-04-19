@@ -12,7 +12,7 @@
 
             <h3 class="profile-username text-center">{{$user->name}}</h3>
 
-            <p class="text-muted text-center">{{$user->role->name}}</p>
+            <p class="text-muted text-center">{{$user->roles->first()->display_name}}</p>
 
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">

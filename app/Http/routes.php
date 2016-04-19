@@ -43,12 +43,15 @@ Route::group(['middleware' => 'web'], function () {
             return view('welcome');
         });
 
+        Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+            Route::get('profile', ['as' => 'profile', 'uses' => 'UserController@profile']);
+        });
+
         Route::group(['prefix' => 'manages'], function () {
             Route::group(['prefix' => 'users', 'as' => 'user.', 'middleware' => ['permission:manage-users']], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
                 Route::get('form/{uuid?}', ['as' => 'form', 'uses' => 'UserController@form']);
                 Route::get('data', ['as' => 'data', 'uses' => 'UserController@ajaxData']);
-                Route::get('profile', ['as' => 'profile', 'uses' => 'UserController@profile']);
                 Route::post('save', ['as' => 'save', 'uses' => 'UserController@save']);
                 Route::post('delete', ['as' => 'delete', 'uses' => 'UserController@delete']);
             });
