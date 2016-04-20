@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Traits\WithDatatables;
 use App\Events\UserHasRegistered;
 use App\User;
@@ -113,6 +114,22 @@ class UserController extends Controller
         }
 
         abort(404);
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $user = Auth::user();
+        if (Auth::attempt(['email' => $user->email, 'password' => $request->current_password])) {
+            $user->password = bcrypt($request->new_password);
+            $user->save();
+
+            $request->session()->flash('alert-success', trans('profile.change_password_success'));
+        }
+        else {
+            $request->session()->flash('alert-danger', trans('profile.invalid_password'));
+        }
+
+        return redirect()->back();
     }
 
     private function updateUserRole(User $user, Role $role)

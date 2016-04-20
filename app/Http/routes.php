@@ -45,6 +45,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::get('profile', ['as' => 'profile', 'uses' => 'UserController@profile']);
+            Route::post('change_password', ['as' => 'change_password', 'uses' => 'UserController@changePassword']);
         });
 
         Route::group(['prefix' => 'manages'], function () {
