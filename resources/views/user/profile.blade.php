@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('breadcrumbs', Breadcrumbs::render('profile'))
 @section('title', 'User Profile')
 @section('page_header', 'User Profile')
 @section('page_subheader', 'your profile and activity details')
@@ -45,7 +46,7 @@
                         {{Session::get('alert-danger')}}
                     </div>
                 @endif
-                <form method="POST" action="{{route('user.change_password')}}">
+                <form method="POST" action="{{route('change_password')}}">
                     <div class="form-group  {{ $errors->has('current_password') ? 'has-error' : ''}}">
                         <label for="currentPassword">Current Password</label>
                         <input type="password" class="form-control" name="current_password" id="currentPassword">
