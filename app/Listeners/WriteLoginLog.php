@@ -2,7 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Events\UserHasLoggedIn;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\SystemLog;
@@ -26,11 +25,19 @@ class WriteLoginLog
      * @param  UserHasLoggedIn  $event
      * @return void
      */
-    public function handle(UserHasLoggedIn $event)
+    public function handle($event)
     {
         $user = $event->user;
         $request = $event->request;
-        $this->logger->log($user, 'Logged in from '
+        $action = 'undefined';
+
+        if ($event instanceof \App\Events\UserPasswordHasChanged) {
+            $action = 'Change password';
+        } elseif ($event instanceof \App\Events\UserHasLoggedIn) {
+            $action = 'Logged in';
+        }
+
+        $this->logger->log($user, $action . ' from '
             . $request->ip() . ' using ' . $request->header('User-Agent'));
     }
 }

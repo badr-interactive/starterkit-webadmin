@@ -9,6 +9,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Traits\WithDatatables;
 use App\Events\UserHasRegistered;
+use App\Events\UserPasswordHasChanged;
 use App\User;
 use App\Role;
 use App\SystemLog;
@@ -124,6 +125,7 @@ class UserController extends Controller
             $user->save();
 
             $request->session()->flash('alert-success', trans('profile.change_password_success'));
+            Event::fire(new UserPasswordHasChanged($user, $request));
         }
         else {
             $request->session()->flash('alert-danger', trans('profile.invalid_password'));

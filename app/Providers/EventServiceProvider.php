@@ -19,7 +19,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\UserHasRegistered' => [
             'App\Listeners\EmailConfirmation'
-        ]
+        ],
+        'App\Events\UserPasswordHasChanged' => [
+            'App\Listeners\WriteLoginLog'
+        ],
     ];
 
     /**
