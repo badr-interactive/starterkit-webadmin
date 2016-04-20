@@ -91,6 +91,7 @@ class UserController extends Controller
         $user = Auth::user();
         $logs = $this->log->where('user', $user->email)
             ->orderBy('timestamp', 'desc')
+            ->limit(50)
             ->get();
 
         return response()->view('user.profile', compact('user', 'logs'));

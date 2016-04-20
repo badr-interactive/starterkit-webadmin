@@ -76,8 +76,8 @@
             <div class="box-header">
                 <h3 class="box-title">System Logs</h3>
             </div>
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
+            <div class="box-body table-responsive dataTable_wrapper">
+                <table class="table table-hover dataTable" id="syslogTable">
                     <thead>
                         <tr>
                             <th>Timestamp</th>
@@ -101,4 +101,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+$('#syslogTable').DataTable();
+</script>
 @endsection
