@@ -17,10 +17,9 @@ class UserHasLoggedIn extends Event
      *
      * @return void
      */
-    public function __construct(User $user, Request $request)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->request = $request;
     }
 
     /**

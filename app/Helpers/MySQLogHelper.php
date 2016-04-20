@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\SystemLog;
+use Request;
 
 class MySQLogHelper
 {
@@ -18,6 +19,8 @@ class MySQLogHelper
         $this->log->timestamp = $timestamp;
         $this->log->user = $user->email;
         $this->log->action = $action;
+        $this->log->ip_address = Request::ip();
+        $this->log->user_agent = Request::header('User-Agent');
         $this->log->save();
     }
 }

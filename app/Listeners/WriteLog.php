@@ -28,7 +28,6 @@ class WriteLog
     public function handle($event)
     {
         $user = $event->user;
-        $request = $event->request;
         $action = 'undefined';
 
         if ($event instanceof \App\Events\UserPasswordHasChanged) {
@@ -37,7 +36,6 @@ class WriteLog
             $action = 'Logged in';
         }
 
-        $this->logger->log($user, $action . ' from '
-            . $request->ip() . ' using ' . $request->header('User-Agent'));
+        $this->logger->log($user, $action);
     }
 }

@@ -125,7 +125,7 @@ class UserController extends Controller
             $user->save();
 
             $request->session()->flash('alert-success', trans('profile.change_password_success'));
-            Event::fire(new UserPasswordHasChanged($user, $request));
+            Event::fire(new UserPasswordHasChanged($user));
         }
         else {
             $request->session()->flash('alert-danger', trans('profile.invalid_password'));

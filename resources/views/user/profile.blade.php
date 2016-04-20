@@ -80,17 +80,19 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>No.</th>
                             <th>Timestamp</th>
                             <th>Action</th>
+                            <th>IP</th>
+                            <th>User Agent</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($logs as $index => $log)
                         <tr>
-                            <td>{{$index+1}}</td>
                             <td>{{$log->timestamp}}</td>
                             <td>{{$log->action}}</td>
+                            <td>{{$log->ip_address}}</td>
+                            <td>{{$log->user_agent}}</td>
                         </tr>
                         @endforeach
                     </tbody>
