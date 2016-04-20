@@ -157,7 +157,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class
 
     ],
 
@@ -204,9 +205,10 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Datatables' => Yajra\Datatables\Datatables::class,
-        'Uuid'      => Webpatser\Uuid\Uuid::class,
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Datatables'    => Yajra\Datatables\Datatables::class,
+        'Uuid'          => Webpatser\Uuid\Uuid::class,
+        'Entrust'       => Zizaco\Entrust\EntrustFacade::class,
+        'Breadcrumbs'   => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

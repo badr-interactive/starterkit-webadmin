@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('breadcrumbs', Breadcrumbs::render('role.form'))
 @section('page_header', 'Create User Role')
 @section('page_subheader', 'please fill the form below')
 @section('content')

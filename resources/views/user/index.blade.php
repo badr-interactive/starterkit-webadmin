@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('breadcrumbs', Breadcrumbs::render('user.index'))
 @section('title', 'Manages Users')
 @section('page_header', 'Users')
 @section('page_subheader', 'list of registered users')

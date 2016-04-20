@@ -39,9 +39,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/activate', ['as' => 'activation', 'uses' => 'UserController@activation']);
 
     Route::group(['middleware' => 'auth'], function() {
-        Route::get('/', function () {
+        Route::get('/', ['as' => 'home', function () {
             return view('welcome');
-        });
+        }]);
 
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::get('profile', ['as' => 'profile', 'uses' => 'UserController@profile']);
