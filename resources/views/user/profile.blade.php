@@ -105,6 +105,8 @@
 
 @section('scripts')
 <script type="text/javascript">
-$('#syslogTable').DataTable();
+$('#syslogTable').DataTable({
+    order: [[0, "desc"]]
+});
 </script>
 @endsection
