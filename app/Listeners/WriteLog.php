@@ -4,10 +4,10 @@ namespace App\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\SystemLog;
 use App\Helpers\MySQLogHelper as Logger;
+use App\SystemLog;
 
-class WriteLoginLog
+class WriteLog
 {
     /**
      * Create the event listener.

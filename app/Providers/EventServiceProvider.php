@@ -14,14 +14,14 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\UserHasLoggedIn' => [
-            'App\Listeners\WriteLoginLog',
+            'App\Listeners\WriteLog',
             'App\Listeners\UpdateUserLastLogin'
         ],
         'App\Events\UserHasRegistered' => [
             'App\Listeners\EmailConfirmation'
         ],
         'App\Events\UserPasswordHasChanged' => [
-            'App\Listeners\WriteLoginLog'
+            'App\Listeners\WriteLog'
         ],
     ];
 
