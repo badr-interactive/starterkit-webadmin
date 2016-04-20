@@ -21,7 +21,7 @@ Breadcrumbs::register('user_role.index', function ($breadcrumbs) {
     $breadcrumbs->push('Roles', route('user_role.index'));
 });
 
-Breadcrumbs::register('role.form', function ($breadcrumbs) {
+Breadcrumbs::register('user_role.form', function ($breadcrumbs) {
     $breadcrumbs->parent('user_role.index');
     $breadcrumbs->push('Add / Edit ', route('user_role.form'));
 });
