@@ -1,9 +1,10 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "badr-interactive/starterkit-webadmin",
+    "description": "Laravel 5 and Admin LTE Starterkit from Web Admin Site",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "version": "0.1.0-dev",
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
