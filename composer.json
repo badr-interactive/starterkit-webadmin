@@ -1,10 +1,9 @@
 {
     "name": "badr-interactive/starterkit-webadmin",
-    "description": "Laravel 5 and Admin LTE Starterkit from Web Admin Site",
-    "keywords": ["framework", "laravel"],
+    "description": "Laravel 5 and Admin LTE Starterkit for Web Based Administrative Application",
+    "keywords": ["framework", "laravel", "starterkit", "admin-lte"],
     "license": "MIT",
     "type": "project",
-    "version": "0.1.0-dev",
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
