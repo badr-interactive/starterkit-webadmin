@@ -32,13 +32,13 @@ Simple but powerful starter project to build web based administrative applicatio
 You need to install [Composer](https://getcomposer.org/download/) in your system before using this starterkit. If you already have composer installed on your system, please run:
 
 ```
-php composer.phar create-project badr-interactive/starterkit-webadmin [your_project_folder] dev-master --repository-url=https://packages.badr.co.id
+php composer.phar create-project badr-interactive/starterkit-webadmin [your_project_folder] v0.1.0 --repository-url=https://packages.badr.co.id
 ```
 
 or
 
 ```
-composer create-project badr-interactive/starterkit-webadmin [your_project_folder] dev-master --repository-url=https://packages.badr.co.id
+composer create-project badr-interactive/starterkit-webadmin [your_project_folder] v0.1.0 --repository-url=https://packages.badr.co.id
 ```
 
 Wait for the installation process and then open the `.env` file inside your project directory and find this section:
