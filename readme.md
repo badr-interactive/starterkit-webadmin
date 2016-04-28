@@ -68,3 +68,64 @@ php artisan db:seed
 ```
 
 Now your starterkit is ready to use. please run `php artisan serve` in your terminal and then navigate to `http://localhost:8000` in your web browser and then login with `admin@example.com` as email and `password123` as the password.
+
+### Data Table Integration
+
+This starterkit is using `yajra/laravel-datatables-oracle` to provide server side processing for Jquery [DataTable](https://www.datatables.net/) which is used by AdminLTE theme. To make the integration between Jquery DataTable library and `yajra/laravel-datatables-oracle` simple, this starterkit provide a php trait called `WithDatatables`. This trait was built to automate the integration process between your `Controller`, `Model` and `View` using some convention in your `Controller` of DataTable.
+
+#### Basic Usage
+
+For example, we want to show a list of `User` using DataTable and to do that we have `UserController`, `User` model and `list.blade.php`. The first thing we need to setup is our `UserController`. Below is the code we need to provide in our `UserController`:
+
+```
+use App\Trait\WithDatatables;
+
+class UserController extends Controller
+{
+    //using WithDataTables trait
+    use WithDatatables;
+
+    function __construct(User $user)
+    {
+        //let the DataTable know our table model
+        $this->tableModel = $user;
+    }
+
+    public function index(Request $request)
+    {
+        return response()->view('list');
+    }
+}
+```
+
+Using the basic setup above, our `UserController` now have additional method called `ajaxData()` which will provide table data for your Jquery DataTable. Now, we need to register this method in our `app/Http/routes.php` like below:
+
+```
+Route::get('data', ['as' => 'user.data', 'uses' => 'UserController@ajaxData']);
+```
+
+After adding the routes configuration, you can try to navigate to the url (for example: `http://localhost:8000/data`) to check whether to integration process is success or not. If the integration process is success, you can see the output like below:
+
+```
+{"draw":0,"recordsTotal":1,"recordsFiltered":1,"data":[{"id":1,"uuid":"bf75fdbb-0bb3-47eb-a48e-c77c2e069de6","name":"Administrator","phone":"0123-4567xxx","email":"admin@example.com","last_login":"2016-04-28 09:14:08","activation_token":"","is_active":"0","created_at":"01 Feb 2016","updated_at":"42 minutes ago","input":[]}
+```
+
+Next, what we need to do is initialize the Jquery DataTable in our `list.blade.php` file. Write the javascript code like below to fetch the data from server using Jquery DataTable:
+
+```
+@section('scripts')
+<script type="text/javascript">
+$('#userTable').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: '{{route('user.data')}}',
+    columns: [
+        {data: 'name', name: 'name'},
+        {data: 'email', name: 'email'},
+        {data: 'created_at', name: 'created_at'},
+        {data: 'updated_at', name: 'updated_at'},
+    ]
+});
+</script>
+@endsection
+```
