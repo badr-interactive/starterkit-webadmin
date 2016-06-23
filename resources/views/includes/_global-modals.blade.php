@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline" id="confirmDelete">Yes</button>
+                <button type="button" class="btn btn-outline" id="confirmDelete" data-value="0">Yes</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -57,16 +57,20 @@ $('table').on('click', '.btn-delete', function () {
     var uuid = $(this).attr('data-value');
     var info = $(this).attr('data-info');
     $('#deleteInfo').text(info);
-    $('#deleteModal').modal('show').one('click', '#confirmDelete', function () {
-        $.ajax({
-            method: 'POST',
-            url: '{{route("user.delete")}}',
-            data: {_token: '{{csrf_token()}}', uuid: uuid}
-        }).done(function(result) {
-            if(result.success === true) {
-                window.location.reload();
-            }
-        })
+    $('#deleteModal').modal('show');
+    $('#confirmDelete').attr('data-value', uuid);
+});
+
+$('#deleteModal').one('click', '#confirmDelete', function () {
+    var uuid = $(this).attr('data-value');
+    $.ajax({
+        method: 'POST',
+        url: '{{route("user.delete")}}',
+        data: {_token: '{{csrf_token()}}', uuid: uuid}
+    }).done(function(result) {
+        if(result.success === true) {
+            window.location.reload();
+        }
     });
 });
 
