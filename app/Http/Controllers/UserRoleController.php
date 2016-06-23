@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Response;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRoleRequest;
 use App\Traits\WithDatatables;
 use App\Role;
-use Uuid\Uuid;
+use Webpatser\Uuid\Uuid as Uuid;
 
 class UserRoleController extends Controller
 {
@@ -38,7 +37,7 @@ class UserRoleController extends Controller
     {
         $uuid = $request->uuid;
         $userRole = $this->userRole->firstOrNew(['uuid' => $uuid]);
-        $userRole->uuid = empty($uuid) ? \Uuid::generate(4) : $uuid;
+        $userRole->uuid = empty($uuid) ? Uuid::generate(4) : $uuid;
         $userRole->name = $request->name;
         $userRole->display_name = $request->display_name;
         $userRole->description = $request->description;
