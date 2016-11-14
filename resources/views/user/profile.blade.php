@@ -9,7 +9,14 @@
         <!-- Profile Image -->
         <div class="box box-primary">
             <div class="box-body box-profile">
-                <img class="profile-user-img img-responsive img-circle" src="{{route('avatar.url', [$user->uuid])}}" alt="User profile picture">
+                <div class="profile-user-img img-responsive img-circle hovereffect">
+                    <img class="profile-user-img img-responsive img-circle" src="{{route('avatar.url', [$user->uuid])}}" alt="User profile picture">
+                    <div class="profile-user-img img-responsive img-circle upload text-center">
+                        <a class="info" href="#" data-toggle="modal" data-target="#uploadPicture">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
 
                 <h3 class="profile-username text-center">{{$user->name}}</h3>
 
@@ -101,10 +108,58 @@
             </div>
         </div>
     </div>
+    <div id="uploadPicture" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+                </div>
+                <div class="modal-body">
+                    @if ($message = Session::get('fail') || count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                    <form class="form-group" action="{{route('update_image')}}" enctype="multipart/form-data" method="POST">
+                    {{ csrf_field() }}
+                        <div>
+                            <div class="cl-md-8">
+                                <input type="file" name="image" >
+                                <br>
+                            </div>
+                            <div class="cl-md-8">
+                                <input type="submit" class="btn btn-primary btn-flat" href="#" value="Upload"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
 @section('scripts')
+@if(!empty(Session::get('upload-status')) || count($errors) > 0)
+<script type="text/javascript">
+$(function() {
+    $('#uploadPicture').modal('show');
+});
+</script>
+@endif
+
 <script type="text/javascript">
 $('#syslogTable').DataTable({
     order: [[0, "desc"]]

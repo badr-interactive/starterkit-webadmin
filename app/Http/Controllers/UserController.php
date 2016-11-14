@@ -159,4 +159,32 @@ class UserController extends Controller
         Storage::put('avatars/' . $user->uuid . '.png', $image);
         Event::fire(new UserHasRegistered($user, $generatedPassword));
     }
+
+    public function updateImage(Request $request)
+    {
+        $user = Auth::user();
+        $uuid = $user->uuid;
+
+        $img = $request->image;
+
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if(!is_null($img)){
+            
+            $filename       = $uuid.'.'.$request->image->getClientOriginalExtension();
+            Storage::put('avatars/'. $uuid . '.png', file_get_contents($img->getRealPath()));
+            
+            return back()
+                ->with('upload-status', 1)
+                ->with('success','Image Uploaded successfully.')
+                ->with('path',$filename);
+        }
+        else{
+            return back()
+                ->with('upload-status', 2)
+                ->with('fail','Please Choose the image to upload.');
+        }
+    }
 }
