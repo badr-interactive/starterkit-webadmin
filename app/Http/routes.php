@@ -73,6 +73,14 @@ Route::group(['middleware' => 'web'], function () {
                 Route::post('grant/{permission}/{role_id}', ['as' => 'permission', 'uses' => 'AccessController@ajaxGrantPermission']);
                 Route::post('revoke/{permission}/{role_id}', ['as' => 'permission', 'uses' => 'AccessController@ajaxRevokePermission']);
             });
+
+            Route::group(['prefix' => 'content', 'as' => 'content.'], function() {
+                Route::get('/', ['as' => 'index', 'uses' => 'ContentController@index']);
+                Route::get('form/{uuid?}', ['as' => 'form', 'uses' => 'ContentController@form']);
+                Route::get('data', ['as' => 'data', 'uses' => 'ContentController@ajaxData']);
+                Route::post('save', ['as' => 'save', 'uses' => 'ContentController@save']);
+                Route::post('delete', ['as' => 'delete', 'uses' => 'ContentController@delete']);
+            });          
         });
     });
 });
