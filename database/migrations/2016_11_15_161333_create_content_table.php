@@ -17,6 +17,7 @@ class CreateContentTable extends Migration
             $table->string('uuid', 36);
             $table->string('title', 50);
             $table->string('image', 50);
+            $table->string('caption', 50);
             $table->text('text');
             $table->timestamps();
         });
