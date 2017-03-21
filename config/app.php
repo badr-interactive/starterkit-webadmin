@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class
