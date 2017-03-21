@@ -21,6 +21,7 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Auth::routes();
 
 Route::get('avatar/{uuid}', ['as' => 'avatar.url', function($uuid) {
     $filename = $uuid . '.png';
