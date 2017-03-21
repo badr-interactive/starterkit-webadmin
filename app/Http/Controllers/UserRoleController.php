@@ -27,7 +27,7 @@ class UserRoleController extends Controller
         return response()->view('role.index');
     }
 
-    public function form(Request $request, $uuid = 0)
+    public function form(Request $request, $uuid = '')
     {
         $userRole = $this->userRole->firstOrNew(['uuid' => $uuid]);
         return response()->view('role.form', ['userRole' => $userRole]);

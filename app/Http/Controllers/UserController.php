@@ -43,7 +43,7 @@ class UserController extends Controller
         return response()->view('user.index');
     }
 
-    public function form(Request $request, $uuid = 0)
+    public function form(Request $request, $uuid = '')
     {
         $user = $this->user->firstOrNew(['uuid' => $uuid]);
         return response()->view('user.form', ['user' => $user]);
