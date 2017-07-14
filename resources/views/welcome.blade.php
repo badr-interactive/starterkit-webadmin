@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('breadcrumbs', Breadcrumbs::render('home'))
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('home') !!}
+@endsection
 @section('page_header', 'Welcome!')
 @section('content')
 <div class="row">

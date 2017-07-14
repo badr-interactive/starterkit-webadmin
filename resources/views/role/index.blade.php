@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('breadcrumbs', Breadcrumbs::render('user_role.index'))
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('user_role.index') !!}
+@endsection
 @section('title', 'Manages User Roles')
 @section('page_header', 'User Roles')
 @section('page_subheader', 'list of user roles')

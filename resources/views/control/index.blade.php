@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('breadcrumbs', Breadcrumbs::render('control.index'))
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('control.index') !!}
+@endsection
 @section('title', 'Manages Access Control')
 @section('page_header', 'Access Control')
 @section('page_subheader', 'list of role privilleges')
