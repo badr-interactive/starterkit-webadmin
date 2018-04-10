@@ -53,8 +53,8 @@ trait WithDatatables
 
     private function getActionButton($model, $idColumn)
     {
-        return '<a class="btn btn-xs btn-primary btn-edit" data-value="'.$model->getAttribute($idColumn).'"><i class="glyphicon glyphicon-edit"></i> Edit</a> &nbsp;' .
-        '<a class="btn btn-xs btn-danger btn-delete" data-value="'.$model->getAttribute($idColumn).'" data-info="'.$this->getDataName($model).'"><i class="glyphicon glyphicon-remove"></i> Delete</a> &nbsp;';
+        return '<a class="btn btn-xs btn-primary btn-edit" data-value="'.$model->getAttribute($idColumn).'"><i class="fa fa-edit"></i> Edit</a> &nbsp;' .
+        '<a class="btn btn-xs btn-danger btn-delete" data-value="'.$model->getAttribute($idColumn).'" data-info="'.$this->getDataName($model).'"><i class="fa fa-trash"></i> Delete</a> &nbsp;';
     }
 
     private function getCheckbox($model, $idColumn)
