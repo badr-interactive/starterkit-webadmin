@@ -10,7 +10,7 @@
     <div class="col-lg-12">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title"><i class="ion ion-locked"></i> Permission</h3>
+                <h3 class="box-title"><i class="fa fa-lock"></i> Permission</h3>
                 <div class="pull-right">
                     <select id="roleQuery" name="query" class="form-control">
                         @foreach($roles as $role)
