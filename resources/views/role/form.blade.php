@@ -48,8 +48,8 @@
                         </div>
                         <div>
                             <div class="pull-right">
-                                <button type="submit" class="btn btn-primary" name="submit">Save</button>
-                                <button type="button" class="btn btn-danger">Cancel</button>
+                                <a href="{{ route('user_role.index') }}" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back</a>
+                                <button type="submit" class="btn btn-primary" name="submit"><i class="fa fa-save"></i> Save</button>
                             </div>
                             <div class="clearfix"></div>
                         </div>

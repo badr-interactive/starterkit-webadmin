@@ -10,9 +10,9 @@
     <div class="col-lg-12">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title"><i class="ion ion-locked"></i> User Roles</h3>
+                <h3 class="box-title"><i class="fa fa-lock"></i> User Roles</h3>
                 <a href="{{route('user_role.form')}}">
-                    <button id="btnAdd" class="btn btn-primary pull-right btn-xs"><i class="ion ion-plus"></i> Add</button>
+                    <button id="btnAdd" class="btn btn-primary pull-right btn-xs"><i class="fa fa-plus"></i> Add</button>
                 </a>
             </div>
             <div class="box-body">
