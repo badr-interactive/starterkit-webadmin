@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('breadcrumbs', Breadcrumbs::render('profile'))
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('profile') !!}
+@endsection
 @section('title', 'User Profile')
 @section('page_header', 'User Profile')
 @section('page_subheader', 'your profile and activity details')
