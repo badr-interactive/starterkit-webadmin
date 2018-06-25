@@ -1,8 +1,8 @@
-## Laravel 5 Starterkit Web Admin
+## Laravel 5.4 Starterkit Web Admin
 
 ### Introduction
 
-Simple but powerful starter project to build web based administrative application. This project is based on awesome [Laravel 5.2](https://github.com/laravel/laravel) PHP Framework and [Admin LTE 2](https://github.com/almasaeed2010/AdminLTE) web admin control panel theme. The purpose of this project is to provide starter project which contains fundamental component to build web based administrative application.
+Simple but powerful starter project to build web based administrative application. This project is based on awesome [Laravel 5.4](https://github.com/laravel/laravel) PHP Framework and [Admin LTE 2](https://github.com/almasaeed2010/AdminLTE) web admin control panel theme. The purpose of this project is to provide starter project which contains fundamental component to build web based administrative application.
 
 ### Features
 
@@ -29,19 +29,11 @@ Simple but powerful starter project to build web based administrative applicatio
 
 ### Installation
 
-You need to install [Composer](https://getcomposer.org/download/) in your system before using this starterkit. If you already have composer installed on your system, please run:
+You need to install [Composer](https://getcomposer.org/download/) and [Git] (https://git-scm.com/downloads) in your system before using this starterkit.
 
-```
-php composer.phar create-project badr-interactive/starterkit-webadmin [your_project_folder] v0.1.0 --repository-url=https://packages.badr.co.id
-```
-
-or
-
-```
-composer create-project badr-interactive/starterkit-webadmin [your_project_folder] v0.1.0 --repository-url=https://packages.badr.co.id
-```
-
-Wait for the installation process and then open the `.env` file inside your project directory and find this section:
+Firstly `git clone` this repository to your project directory.
+Then run the `composer install` in your project directory.
+Wait for the installation process and then copy the `.env.example` configuration to `.env` and inside the file find this section:
 
 ```
 DB_HOST=localhost
