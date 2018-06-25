@@ -31,9 +31,13 @@ Simple but powerful starter project to build web based administrative applicatio
 
 You need to install [Composer](https://getcomposer.org/download/) and [Git] (https://git-scm.com/downloads) in your system before using this starterkit.
 
-Firstly `git clone` this repository to your project directory.
-Then run the `composer install` in your project directory.
-Wait for the installation process and then copy the `.env.example` configuration to `.env` and inside the file find this section:
+Start by running this command
+```
+git clone git@github.com:badr-interactive/starterkit-webadmin.git
+composer install
+cp .env.example .env
+```
+Wait for the installation process, and then inside the `.env` file find this section:
 
 ```
 DB_HOST=localhost
