@@ -64,7 +64,11 @@ php artisan migrate
 php artisan db:seed
 ```
 
-Now your starterkit is ready to use. please run `php artisan serve` in your terminal and then navigate to `http://localhost:8000` in your web browser and then login with `admin@example.com` as email and `password123` as the password.
+Now your starterkit is ready to use. please run `php artisan serve` in your terminal and then navigate to `http://localhost:8000` in your web browser and login with credentials:
+```
+user: admin@example.com
+pass: password123
+```
 
 ### Data Table Integration
 
