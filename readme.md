@@ -34,6 +34,7 @@ You need to install [Composer](https://getcomposer.org/download/) and [Git] (htt
 Start by running this command
 ```
 git clone git@github.com:badr-interactive/starterkit-webadmin.git
+cd starterkit-webadmin
 composer install
 cp .env.example .env
 ```
